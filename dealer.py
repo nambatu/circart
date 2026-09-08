@@ -18,7 +18,7 @@ def load(path, seen_path=None, fresh_only=False):
     cards = json.load(open(path, encoding="utf-8"))
     cards = [c for c in cards if c.get("image_local")]      # unplayable without art
     if fresh_only and seen_path and os.path.exists(seen_path):
-        seen = set(json.load(open(seen_path)))
+        seen = set(json.load(open(seen_path, encoding="utf-8")))
         fresh = [c for c in cards if c["id"] not in seen]
         # Fall back to the full deck once fewer than a third remain unseen.
         if len(fresh) > len(cards) // 3:
@@ -128,8 +128,8 @@ def main():
     json.dump(game, open(out, "w", encoding="utf-8"), indent=2, ensure_ascii=False)
 
     used = [c["id"] for c in starts + pile]
-    prev = json.load(open(a.seen)) if os.path.exists(a.seen) else []
-    json.dump(sorted(set(prev) | set(used)), open(a.seen, "w"), indent=2)
+    prev = json.load(open(a.seen, encoding="utf-8")) if os.path.exists(a.seen) else []
+    json.dump(sorted(set(prev) | set(used)), open(a.seen, "w", encoding="utf-8"), indent=2)
 
     print(f"seed {seed}  ->  {out}")
     print(f"deck {len(cards)} playable | starts {len(starts)} | pile {len(pile)}")

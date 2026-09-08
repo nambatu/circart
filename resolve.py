@@ -47,7 +47,7 @@ def query(sparql_text):
     key = hashlib.sha1(sparql_text.encode()).hexdigest()[:16]
     path = os.path.join(CACHE, key + ".json")
     if os.path.exists(path):
-        return json.load(open(path))
+        return json.load(open(path, encoding="utf-8"))
 
     url = SPARQL + "?" + urllib.parse.urlencode({"query": sparql_text, "format": "json"})
     req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "application/sparql-results+json"})
@@ -56,7 +56,7 @@ def query(sparql_text):
         try:
             with urllib.request.urlopen(req, timeout=120) as r:
                 data = json.load(r)
-            json.dump(data, open(path, "w"))
+            json.dump(data, open(path, "w", encoding="utf-8"), ensure_ascii=False)
             time.sleep(DELAY)
             return data
         except urllib.error.HTTPError as e:
@@ -136,7 +136,7 @@ def works_by_artist(qid):
 
 
 def main(path):
-    records = json.load(open(path))
+    records = json.load(open(path, encoding="utf-8"))
     print(f"loaded {len(records)} records")
 
     print("pass 1: resolving artists")

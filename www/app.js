@@ -65,6 +65,55 @@ async function fetchArtworksLoop() {
     }
 }
 
+// --- Short-term memory of recently dealt cards -------------------------------
+// Cards you were shown in the last SEEN_TTL_MS are skipped, so a long sitting
+// keeps serving fresh artworks; come back tomorrow and the deck feels new.
+// Every localStorage access is guarded: private browsing and blocked
+// third-party storage must never stop a round from starting.
+
+const SEEN_KEY = 'seenCards';
+const SEEN_TTL_MS = 6 * 60 * 60 * 1000; // 6 hours
+
+function readSeen() {
+    let raw = null;
+    try {
+        raw = localStorage.getItem(SEEN_KEY);
+    } catch (e) {
+        return {};
+    }
+    if (!raw) return {};
+
+    let data;
+    try {
+        data = JSON.parse(raw);
+    } catch (e) {
+        return {};
+    }
+
+    // Older builds stored a plain array of ids with no timestamps. Drop it.
+    if (!data || Array.isArray(data) || typeof data !== 'object') return {};
+
+    const cutoff = Date.now() - SEEN_TTL_MS;
+    const fresh = {};
+    for (const id in data) {
+        if (typeof data[id] === 'number' && data[id] > cutoff) {
+            fresh[id] = data[id];
+        }
+    }
+    return fresh;
+}
+
+function writeSeen(ids) {
+    const seen = readSeen();
+    const now = Date.now();
+    for (const id of ids) seen[id] = now;
+    try {
+        localStorage.setItem(SEEN_KEY, JSON.stringify(seen));
+    } catch (e) {
+        // Storage unavailable. The game plays fine without the memory.
+    }
+}
+
 class Dealer {
     constructor(cards) {
         this.allCards = cards.filter(c => c.image_local || c.image);
@@ -72,12 +121,9 @@ class Dealer {
     }
 
     loadFreshCards() {
-        let seen = [];
-        try {
-            seen = JSON.parse(localStorage.getItem('seenCards')) || [];
-        } catch(e) {}
-        
-        let fresh = this.allCards.filter(c => !seen.includes(c.id));
+        const seen = readSeen();
+
+        let fresh = this.allCards.filter(c => !seen[c.id]);
         if (fresh.length > this.allCards.length / 3) {
             return fresh;
         }
@@ -198,12 +244,7 @@ class Dealer {
         let pile = this.buildPile(cards, size, starts.map(c => c.id));
         
         let used = [...starts, ...pile].map(c => c.id);
-        let seen = [];
-        try {
-            seen = JSON.parse(localStorage.getItem('seenCards')) || [];
-        } catch(e) {}
-        let newSeen = Array.from(new Set([...seen, ...used]));
-        localStorage.setItem('seenCards', JSON.stringify(newSeen));
+        writeSeen(used);
 
         return {
             starting_cards: starts,
