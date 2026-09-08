@@ -1,0 +1,565 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0"
+	xmlns:excerpt="http://wordpress.org/export/1.2/excerpt/"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:wp="http://wordpress.org/export/1.2/"
+>
+<channel>
+	<title>Julian Langschwert</title>
+	<link>https://j.langschwerts.de</link>
+	<description>Data Science &#183; Research &#183; Salzburg</description>
+	<pubDate>Tue, 08 Sep 2026 20:00:00 +0000</pubDate>
+	<language>en-GB</language>
+	<wp:wxr_version>1.2</wp:wxr_version>
+	<wp:base_site_url>https://j.langschwerts.de</wp:base_site_url>
+	<wp:base_blog_url>https://j.langschwerts.de</wp:base_blog_url>
+
+	<wp:author>
+		<wp:author_id>2</wp:author_id>
+		<wp:author_login><![CDATA[julian]]></wp:author_login>
+		<wp:author_email><![CDATA[]]></wp:author_email>
+		<wp:author_display_name><![CDATA[Julian Langschwert]]></wp:author_display_name>
+		<wp:author_first_name><![CDATA[Julian]]></wp:author_first_name>
+		<wp:author_last_name><![CDATA[Langschwert]]></wp:author_last_name>
+	</wp:author>
+
+	<generator>https://wordpress.org/?v=7.1</generator>
+
+	<!-- ============================= HOME ============================= -->
+	<item>
+		<title>Home</title>
+		<link>https://j.langschwerts.de/home/</link>
+		<pubDate>Tue, 08 Sep 2026 20:00:00 +0000</pubDate>
+		<dc:creator><![CDATA[julian]]></dc:creator>
+		<guid isPermaLink="false">https://j.langschwerts.de/?page_id=1001</guid>
+		<description></description>
+		<content:encoded><![CDATA[
+<!-- wp:paragraph {"fontSize":"large"} -->
+<p class="has-large-font-size">I am a data science master's student at the University of Salzburg and a junior researcher at FH Salzburg. My work sits where reinforcement learning meets system identification &#8212; teaching agents to decide which experiment is worth running next.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:spacer {"height":"24px"} -->
+<div style="height:24px" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+
+<!-- wp:group {"style":{"border":{"width":"2px","style":"dashed","radius":"10px"},"spacing":{"padding":{"top":"4rem","bottom":"4rem","left":"2rem","right":"2rem"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group" style="border-style:dashed;border-width:2px;border-radius:10px;padding-top:4rem;padding-right:2rem;padding-bottom:4rem;padding-left:2rem"><!-- wp:paragraph {"align":"center","style":{"color":{"text":"#767676"}}} -->
+<p class="has-text-align-center" style="color:#767676">Photo goes here. Select this box in the editor, delete it, and add an Image block in its place.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:spacer {"height":"48px"} -->
+<div style="height:48px" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Research</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>My master's thesis brings reinforcement learning to optimal experiment design for system identification: rather than fixing an excitation signal in advance, an agent learns which measurements will most reduce uncertainty about a system's parameters. I work with the IDA Lab and Simon Hirl&#228;nder, and on the ISIA project at FH Salzburg.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:buttons -->
+<div class="wp-block-buttons"><!-- wp:button {"className":"is-style-outline"} -->
+<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="/research/">Publications and research</a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons -->
+
+<!-- wp:spacer {"height":"48px"} -->
+<div style="height:48px" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Projects</h2>
+<!-- /wp:heading -->
+
+<!-- wp:columns -->
+<div class="wp-block-columns"><!-- wp:column -->
+<div class="wp-block-column"><!-- wp:heading {"level":3,"fontSize":"medium"} -->
+<h3 class="wp-block-heading has-medium-font-size">CIRCArt</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>A browser game about art history. You are shown a masterpiece and have to place it in the correct spot on a timeline &#8212; with bonus points for naming the artist, the title or the exact year.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><a href="/circart/">Play CIRCArt</a> &#183; <a href="/projects/circart/">About the project</a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:column -->
+
+<!-- wp:column -->
+<div class="wp-block-column"><!-- wp:heading {"level":3,"fontSize":"medium"} -->
+<h3 class="wp-block-heading has-medium-font-size">Handball Tracker</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>A match and training tracker for handball teams, running on a Raspberry Pi with a web interface and messaging integration. Currently in development.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><a href="/projects/handball-tracker/">About the project</a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns -->
+]]></content:encoded>
+		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
+		<wp:post_id>1001</wp:post_id>
+		<wp:post_date><![CDATA[2026-09-08 22:00:00]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[2026-09-08 20:00:00]]></wp:post_date_gmt>
+		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
+		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
+		<wp:post_name><![CDATA[home]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_parent>0</wp:post_parent>
+		<wp:menu_order>1</wp:menu_order>
+		<wp:post_type><![CDATA[page]]></wp:post_type>
+		<wp:post_password><![CDATA[]]></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+	</item>
+
+	<!-- ============================= ABOUT ============================= -->
+	<item>
+		<title>About</title>
+		<link>https://j.langschwerts.de/about/</link>
+		<pubDate>Tue, 08 Sep 2026 20:00:00 +0000</pubDate>
+		<dc:creator><![CDATA[julian]]></dc:creator>
+		<guid isPermaLink="false">https://j.langschwerts.de/?page_id=1002</guid>
+		<description></description>
+		<content:encoded><![CDATA[
+<!-- wp:paragraph {"fontSize":"large"} -->
+<p class="has-large-font-size">I study data science at the University of Salzburg, with a focus on reinforcement learning, and work as a junior researcher in Information Technologies at FH Salzburg.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>What draws me to reinforcement learning is not games but measurement. A model of a physical system is only as good as the data you gathered to fit it, and gathering that data is expensive &#8212; every experiment costs machine time. My master's thesis asks whether an agent can learn to choose those experiments well: not a fixed excitation signal decided in advance, but a policy that adapts as it learns what it still does not know about the system. That puts optimal experiment design and system identification in the same loop.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>I do this work alongside the IDA Lab and Simon Hirl&#228;nder, and within the ISIA project at FH Salzburg.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Outside research I build things that are useful to somebody specific: a tracker for a handball team, a game that makes art history stick. Both are listed under <a href="/projects/">Projects</a>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Positions</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Junior Researcher, Information Technologies</strong> &#8212; Fachhochschule Salzburg, since January 2026</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>MSc Data Science</strong> &#8212; Paris Lodron University of Salzburg (PLUS), in progress</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Elsewhere</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><a href="https://orcid.org/0009-0000-5658-1340" target="_blank" rel="noreferrer noopener">ORCID</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="https://github.com/nambatu" target="_blank" rel="noreferrer noopener">GitHub</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="https://linkedin.com/in/julian-langschwert" target="_blank" rel="noreferrer noopener">LinkedIn</a></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+]]></content:encoded>
+		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
+		<wp:post_id>1002</wp:post_id>
+		<wp:post_date><![CDATA[2026-09-08 22:00:00]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[2026-09-08 20:00:00]]></wp:post_date_gmt>
+		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
+		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
+		<wp:post_name><![CDATA[about]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_parent>0</wp:post_parent>
+		<wp:menu_order>2</wp:menu_order>
+		<wp:post_type><![CDATA[page]]></wp:post_type>
+		<wp:post_password><![CDATA[]]></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+	</item>
+
+	<!-- ============================= RESEARCH ============================= -->
+	<item>
+		<title>Research</title>
+		<link>https://j.langschwerts.de/research/</link>
+		<pubDate>Tue, 08 Sep 2026 20:00:00 +0000</pubDate>
+		<dc:creator><![CDATA[julian]]></dc:creator>
+		<guid isPermaLink="false">https://j.langschwerts.de/?page_id=1003</guid>
+		<description></description>
+		<content:encoded><![CDATA[
+<!-- wp:paragraph {"fontSize":"large"} -->
+<p class="has-large-font-size">Reinforcement learning for system identification and optimal experiment design.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Identifying the parameters of a mechatronic system means exciting it and watching how it responds. Which excitation you choose determines how much you learn, and classical optimal experiment design solves for that choice up front, from a model you do not yet trust. My research treats it instead as a sequential decision problem: an agent picks the next experiment based on what the previous ones revealed, and learns a policy that generalises across systems.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Publications</h2>
+<!-- /wp:heading -->
+
+<!-- wp:group {"style":{"spacing":{"padding":{"left":"1.5rem"},"blockGap":"0.5rem"},"border":{"left":{"width":"3px"},"top":[],"right":[],"bottom":[]}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group" style="border-left-width:3px;padding-left:1.5rem"><!-- wp:paragraph {"style":{"typography":{"fontStyle":"normal","fontWeight":"600"}}} -->
+<p style="font-style:normal;font-weight:600">Reinforcement Learning for Optimal Experiment Design in Parameter Identification of Mechatronic Systems</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Julian Langschwert, Georg Schaefer, Jakob Rehrl, Stefan Huber, Simon Hirl&#228;nder</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"fontSize":"small"} -->
+<p class="has-small-font-size">DEXA International Workshop on Optimisation of Industrial Production with AI Algorithms &#183; Conference paper &#183; June 2026</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"fontSize":"small"} -->
+<p class="has-small-font-size"><a href="https://doi.org/10.48550/arXiv.2606.00059" target="_blank" rel="noreferrer noopener">doi.org/10.48550/arXiv.2606.00059</a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:spacer {"height":"32px"} -->
+<div style="height:32px" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+
+<!-- wp:paragraph -->
+<p>A current list is kept on <a href="https://orcid.org/0009-0000-5658-1340" target="_blank" rel="noreferrer noopener">ORCID</a>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Affiliations</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>IDA Lab Salzburg &#8212; with Simon Hirl&#228;nder</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>ISIA project, Fachhochschule Salzburg</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+]]></content:encoded>
+		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
+		<wp:post_id>1003</wp:post_id>
+		<wp:post_date><![CDATA[2026-09-08 22:00:00]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[2026-09-08 20:00:00]]></wp:post_date_gmt>
+		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
+		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
+		<wp:post_name><![CDATA[research]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_parent>0</wp:post_parent>
+		<wp:menu_order>3</wp:menu_order>
+		<wp:post_type><![CDATA[page]]></wp:post_type>
+		<wp:post_password><![CDATA[]]></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+	</item>
+
+	<!-- ============================= PROJECTS ============================= -->
+	<item>
+		<title>Projects</title>
+		<link>https://j.langschwerts.de/projects/</link>
+		<pubDate>Tue, 08 Sep 2026 20:00:00 +0000</pubDate>
+		<dc:creator><![CDATA[julian]]></dc:creator>
+		<guid isPermaLink="false">https://j.langschwerts.de/?page_id=1004</guid>
+		<description></description>
+		<content:encoded><![CDATA[
+<!-- wp:paragraph {"fontSize":"large"} -->
+<p class="has-large-font-size">Things I build outside the lab.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading"><a href="/projects/circart/">CIRCArt</a></h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>A browser game about art history. You are shown a masterpiece and have to place it in the correct spot on a chronological timeline, with bonus points for guessing the artist, the title or the exact year. Every card carries a short piece of writing about the work, so a round doubles as a tour.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:buttons -->
+<div class="wp-block-buttons"><!-- wp:button -->
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="/circart/">Play CIRCArt</a></div>
+<!-- /wp:button -->
+
+<!-- wp:button {"className":"is-style-outline"} -->
+<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="/projects/circart/">Read more</a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons -->
+
+<!-- wp:spacer {"height":"48px"} -->
+<div style="height:48px" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading"><a href="/projects/handball-tracker/">Handball Tracker</a></h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>A tracker for handball teams &#8212; attendance, matches and training &#8212; running on a Raspberry Pi in the clubhouse, with a web interface and messaging integration so nobody has to install anything. In development.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:buttons -->
+<div class="wp-block-buttons"><!-- wp:button {"className":"is-style-outline"} -->
+<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="/projects/handball-tracker/">Read more</a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons -->
+]]></content:encoded>
+		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
+		<wp:post_id>1004</wp:post_id>
+		<wp:post_date><![CDATA[2026-09-08 22:00:00]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[2026-09-08 20:00:00]]></wp:post_date_gmt>
+		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
+		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
+		<wp:post_name><![CDATA[projects]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_parent>0</wp:post_parent>
+		<wp:menu_order>4</wp:menu_order>
+		<wp:post_type><![CDATA[page]]></wp:post_type>
+		<wp:post_password><![CDATA[]]></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+	</item>
+
+	<!-- ============================= CIRCART ============================= -->
+	<item>
+		<title>CIRCArt</title>
+		<link>https://j.langschwerts.de/projects/circart/</link>
+		<pubDate>Tue, 08 Sep 2026 20:00:00 +0000</pubDate>
+		<dc:creator><![CDATA[julian]]></dc:creator>
+		<guid isPermaLink="false">https://j.langschwerts.de/?page_id=1005</guid>
+		<description></description>
+		<content:encoded><![CDATA[
+<!-- wp:paragraph {"fontSize":"large"} -->
+<p class="has-large-font-size">Place masterpieces of art history in the right order, and find out how much you actually know about the last seven hundred years of painting.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:buttons -->
+<div class="wp-block-buttons"><!-- wp:button -->
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="/circart/">Play CIRCArt</a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons -->
+
+<!-- wp:spacer {"height":"32px"} -->
+<div style="height:32px" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">How it works</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>You are dealt one artwork at a time and have to slot it into a growing timeline. Get the position right and it stays; get it wrong and you see where it actually belonged. Before you place a card you can also guess the artist, the title or the exact year for bonus points &#8212; typos are forgiven, so you do not need to spell Toulouse-Lautrec correctly under pressure.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>After each round the card opens up: movement, medium, where the work hangs today, and a short piece of writing about what makes it worth knowing. That part is the actual point of the game. The timeline is the excuse.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Built with</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Plain HTML, CSS and JavaScript with no framework, so it loads fast and runs offline once cached. The card set is assembled by a Python pipeline that pulls metadata and open-access images from museum APIs &#8212; the Metropolitan Museum of Art, the Cleveland Museum of Art and Europeana &#8212; and resolves them against Wikidata. A Capacitor wrapper builds the same code into Android and iOS apps.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Image credits and rights</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Every card names its artist, title, year and the collection that holds the work. The images are reproductions of artworks used here for a non-commercial educational game. If you hold rights in a work shown in CIRCArt and would like it removed or credited differently, please <a href="/contact/">get in touch</a> and I will act on it promptly.</p>
+<!-- /wp:paragraph -->
+]]></content:encoded>
+		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
+		<wp:post_id>1005</wp:post_id>
+		<wp:post_date><![CDATA[2026-09-08 22:00:00]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[2026-09-08 20:00:00]]></wp:post_date_gmt>
+		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
+		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
+		<wp:post_name><![CDATA[circart]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_parent>1004</wp:post_parent>
+		<wp:menu_order>1</wp:menu_order>
+		<wp:post_type><![CDATA[page]]></wp:post_type>
+		<wp:post_password><![CDATA[]]></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+	</item>
+
+	<!-- ============================= HANDBALL TRACKER ============================= -->
+	<item>
+		<title>Handball Tracker</title>
+		<link>https://j.langschwerts.de/projects/handball-tracker/</link>
+		<pubDate>Tue, 08 Sep 2026 20:00:00 +0000</pubDate>
+		<dc:creator><![CDATA[julian]]></dc:creator>
+		<guid isPermaLink="false">https://j.langschwerts.de/?page_id=1006</guid>
+		<description></description>
+		<content:encoded><![CDATA[
+<!-- wp:paragraph {"fontSize":"large"} -->
+<p class="has-large-font-size">A tracker for handball teams that lives on a Raspberry Pi and talks to players where they already are.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"style":{"typography":{"fontStyle":"italic","fontWeight":"400"}}} -->
+<p style="font-style:italic;font-weight:400">In development &#8212; not yet publicly available.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">The idea</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Amateur clubs run on group chats and somebody's memory. Attendance for training, who is injured, who is available on Saturday &#8212; it all lives in a scroll of messages nobody can search. The tracker gives a team a small web app for that, backed by a server that reaches players through the messaging app they already use, so there is nothing for anyone to install and no new account to forget.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Built with</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>A Node.js and Express server with token-based authentication, running on a Raspberry Pi so a club can host it themselves for the price of the hardware. Messaging integration runs through a headless browser session on the same device.</p>
+<!-- /wp:paragraph -->
+]]></content:encoded>
+		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
+		<wp:post_id>1006</wp:post_id>
+		<wp:post_date><![CDATA[2026-09-08 22:00:00]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[2026-09-08 20:00:00]]></wp:post_date_gmt>
+		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
+		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
+		<wp:post_name><![CDATA[handball-tracker]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_parent>1004</wp:post_parent>
+		<wp:menu_order>2</wp:menu_order>
+		<wp:post_type><![CDATA[page]]></wp:post_type>
+		<wp:post_password><![CDATA[]]></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+	</item>
+
+	<!-- ============================= CONTACT ============================= -->
+	<item>
+		<title>Contact</title>
+		<link>https://j.langschwerts.de/contact/</link>
+		<pubDate>Tue, 08 Sep 2026 20:00:00 +0000</pubDate>
+		<dc:creator><![CDATA[julian]]></dc:creator>
+		<guid isPermaLink="false">https://j.langschwerts.de/?page_id=1007</guid>
+		<description></description>
+		<content:encoded><![CDATA[
+<!-- wp:paragraph {"fontSize":"large"} -->
+<p class="has-large-font-size">Happy to hear about research collaborations, the projects, or anything on this site that looks wrong.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>Email:</strong> ADD YOUR EMAIL ADDRESS HERE</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><a href="https://orcid.org/0009-0000-5658-1340" target="_blank" rel="noreferrer noopener">ORCID</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="https://github.com/nambatu" target="_blank" rel="noreferrer noopener">GitHub</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="https://linkedin.com/in/julian-langschwert" target="_blank" rel="noreferrer noopener">LinkedIn</a></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+]]></content:encoded>
+		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
+		<wp:post_id>1007</wp:post_id>
+		<wp:post_date><![CDATA[2026-09-08 22:00:00]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[2026-09-08 20:00:00]]></wp:post_date_gmt>
+		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
+		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
+		<wp:post_name><![CDATA[contact]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_parent>0</wp:post_parent>
+		<wp:menu_order>5</wp:menu_order>
+		<wp:post_type><![CDATA[page]]></wp:post_type>
+		<wp:post_password><![CDATA[]]></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+	</item>
+
+	<!-- ============================= IMPRESSUM ============================= -->
+	<item>
+		<title>Impressum</title>
+		<link>https://j.langschwerts.de/impressum/</link>
+		<pubDate>Tue, 08 Sep 2026 20:00:00 +0000</pubDate>
+		<dc:creator><![CDATA[julian]]></dc:creator>
+		<guid isPermaLink="false">https://j.langschwerts.de/?page_id=1008</guid>
+		<description></description>
+		<content:encoded><![CDATA[
+<!-- wp:paragraph {"style":{"color":{"background":"#fff4e5"},"spacing":{"padding":{"top":"1rem","bottom":"1rem","left":"1rem","right":"1rem"}}}} -->
+<p class="has-background" style="background-color:#fff4e5;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><strong>Draft &#8212; complete this before launch.</strong> Austrian law (&#167;5 ECG and &#167;25 MedienG) requires an Impressum on websites. Replace the placeholders below with your real details, then delete this notice. If you are unsure what applies to a personal academic site, the WKO Impressum generator is a good starting point.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Angaben gem&#228;&#223; &#167;5 ECG</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Julian Langschwert<br>ADDRESS LINE 1<br>POSTCODE CITY<br>Austria</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>Email:</strong> ADD YOUR EMAIL ADDRESS HERE</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Purpose of this website</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Personal website presenting academic work and non-commercial software projects.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Content responsibility</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Responsible for the content of this website: Julian Langschwert, address as above.</p>
+<!-- /wp:paragraph -->
+]]></content:encoded>
+		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
+		<wp:post_id>1008</wp:post_id>
+		<wp:post_date><![CDATA[2026-09-08 22:00:00]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[2026-09-08 20:00:00]]></wp:post_date_gmt>
+		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
+		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
+		<wp:post_name><![CDATA[impressum]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_parent>0</wp:post_parent>
+		<wp:menu_order>6</wp:menu_order>
+		<wp:post_type><![CDATA[page]]></wp:post_type>
+		<wp:post_password><![CDATA[]]></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+	</item>
+
+</channel>
+</rss>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    <title>CIRCArt - CMA Edition</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- START SCREEN -->
+        <div id="start-screen" class="screen active">
+            <h1><span style="color: #000;">CIRC</span><span style="color: #722F37;">Art</span></h1>
+            <p>Place masterpieces of art history in the correct chronological order on the timeline.</p>
+            
+            <div class="settings">
+                <div class="settings-container">
+                    <div class="settings-card primary-card">
+                        <h2>Game Setup</h2>
+                        <div class="setting-group">
+                            <label for="rounds-select">Number of Rounds:</label>
+                            <select id="rounds-select">
+                                <option value="5">5</option>
+                                <option value="10" selected>10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1rem;">
+                <button id="start-btn" class="primary-btn">Start Game</button>
+                <button id="gallery-btn" class="primary-btn" style="background-color: #555;">View Gallery</button>
+            </div>
+        </div>
+
+        <!-- GALLERY SCREEN -->
+        <div id="gallery-screen" class="screen">
+            <header>
+                <h2>Gallery</h2>
+                <button id="back-to-menu-btn" class="primary-btn" style="padding: 0.5rem 1.5rem; font-size: 1rem;">Back to Menu</button>
+            </header>
+            <main style="overflow-y: auto; width: 100%;">
+                <div id="gallery-grid" class="gallery-grid">
+                    <!-- Gallery items go here -->
+                </div>
+            </main>
+        </div>
+
+        <!-- GAME SCREEN -->
+        <div id="game-screen" class="screen">
+            <header>
+                <div class="stats">
+                    <span>Round <span id="current-round">1</span> / <span id="total-rounds">10</span></span>
+                    <span>Score: <span id="score">0</span></span>
+                </div>
+            </header>
+
+            <main>
+                <!-- Aktuelle Karte zum Einordnen -->
+                <div id="active-card-section">
+                    <div id="active-card" class="card hidden">
+                        <div class="card-image-container">
+                            <img id="active-image" class="zoomable-img" src="" alt="Current Artwork">
+                        </div>
+                        <div id="active-details" class="card-details hidden">
+                            <h3 id="active-title">Title</h3>
+                            <p id="active-artist">Artist</p>
+                            <p class="year" id="active-year">Year</p>
+                        </div>
+                    </div>
+                    
+                    <div id="interaction-panel">
+                        <div class="bonus-section" id="bonus-section">
+                            <h3>Extra Points (Optional)</h3>
+                            <p class="hint">Guess the artist, title, or exact year for bonus points! (Typos allowed)</p>
+                            <input type="text" id="guess-artist" placeholder="Artist">
+                            <input type="text" id="guess-title" placeholder="Title">
+                            <input type="number" id="guess-year" placeholder="Year (exact)">
+                            <p class="instruction">Click on a gap in the timeline below to place the artwork.</p>
+                        </div>
+
+                        <!-- Feedback Area -->
+                        <div id="feedback-area" class="hidden">
+                            <h2 id="feedback-message">Correct!</h2>
+                            <ul id="bonus-feedback"></ul>
+                            <div id="active-extra-info" class="metadata-box" style="font-size: 0.8rem; color: var(--text-secondary); background: #f9f9f9; padding: 0.5rem; border-radius: 6px; margin-bottom: 0.5rem; text-align: center; border: 1px solid #eee;">
+                                <span id="active-movement"></span> &bull; <span id="active-medium"></span> &bull; <span id="active-location"></span>
+                            </div>
+                            <div id="trivia-section" class="hidden">
+                                <h3>Artwork Details</h3>
+                                <p id="trivia-text"></p>
+                            </div>
+                            <div id="did-you-know-section" class="hidden">
+                                <h3>Did you know?</h3>
+                                <p id="did-you-know-text"></p>
+                            </div>
+                            <button id="next-round-btn" class="primary-btn">Continue</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Zeitstrahl -->
+                <div id="timeline-section">
+                    <h2>Timeline</h2>
+                    <div id="timeline" class="timeline">
+                        <!-- Wird per JS befüllt: Gaps und Karten -->
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- END SCREEN -->
+        <div id="end-screen" class="screen">
+            <h1>Game Over!</h1>
+            <p>Your Highscore:</p>
+            <div class="final-score" id="final-score">0</div>
+            <div class="score-breakdown" id="score-breakdown">
+                <!-- Breakdown -->
+            </div>
+            <button id="restart-btn" class="primary-btn">Play Again</button>
+        </div>
+
+        <!-- LOADING OVERLAY -->
+        <div id="loading-overlay" class="hidden">
+            <lottie-player id="lottie-loader" src="Abstract%20Painting%20Loader.json" background="transparent" speed="1" style="width: 250px; height: 250px;" loop autoplay></lottie-player>
+            <p id="loading-text">Loading artworks from the museum...</p>
+        </div>
+
+        <!-- FLOATING REPORT BUTTON -->
+        <button id="open-report-btn" class="report-btn">Report / Feedback</button>
+
+        <!-- REPORT MODAL -->
+        <div id="report-modal" class="modal hidden">
+            <div class="modal-content">
+                <h2>Report / Feedback</h2>
+                <p>Spotted a wrong fact? Want to suggest a new feature? Let us know!</p>
+                <textarea id="report-text" placeholder="Type your feedback here..." rows="5"></textarea>
+                <div class="modal-actions">
+                    <button id="cancel-report-btn" class="secondary-btn">Cancel</button>
+                    <button id="send-report-btn" class="primary-btn">Send</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ZOOM MODAL -->
+        <div id="zoom-modal" class="zoom-modal hidden">
+            <span id="close-zoom-btn" class="close-zoom">&times;</span>
+            <img id="zoomed-image" src="" alt="Zoomed Artwork">
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

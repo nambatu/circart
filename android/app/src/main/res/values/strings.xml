@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name"> CIRCArt</string>
+    <string name="title_activity_main"> CIRCArt</string>
+    <string name="package_name">com.circ.art</string>
+    <string name="custom_url_scheme">com.circ.art</string>
+</resources>
