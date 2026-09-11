@@ -29,6 +29,11 @@ except ImportError:
 # --- settings ---------------------------------------------------------------
 MAX_EDGE = 1600      # longest side, in pixels
 QUALITY = 82         # JPEG quality (82 is visually lossless for photos)
+# GitHub Pages serves the site at this hostname. The CNAME file is what makes
+# the custom domain survive a rebuild, and this script recreates docs/ from
+# scratch each run, so the file has to be written here rather than committed by
+# hand. Set to None if you ever go back to a plain github.io URL.
+CUSTOM_DOMAIN = "circart.langschwerts.de"
 # ----------------------------------------------------------------------------
 
 ROOT = Path(__file__).resolve().parent
@@ -69,6 +74,10 @@ def main():
             print(f"  + {name}")
         else:
             print(f"  ! missing: {name}")
+
+    if CUSTOM_DOMAIN:
+        (DST / "CNAME").write_text(CUSTOM_DOMAIN + "\n", encoding="utf-8")
+        print(f"  + CNAME ({CUSTOM_DOMAIN})")
 
     # 2. resize the images
     src_images = sorted((SRC / "images").glob("*"))
