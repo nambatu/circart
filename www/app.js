@@ -29,6 +29,21 @@ const loadingTexts = [
     "Telling Warhol his 15 minutes are up..."
 ];
 
+// --- Analytics ---------------------------------------------------------------
+// Anonymous, cookieless event counting via GoatCounter. No cookies, no personal
+// data, nothing that needs a consent banner. Every call is guarded: if the
+// script is blocked, absent, or still loading, the game carries on untouched.
+
+function track(name) {
+    try {
+        if (window.goatcounter && typeof window.goatcounter.count === 'function') {
+            window.goatcounter.count({ path: name, title: name, event: true });
+        }
+    } catch (e) {
+        // Analytics must never break gameplay.
+    }
+}
+
 // DOM Elements
 const screens = {
     start: document.getElementById('start-screen'),
@@ -258,7 +273,7 @@ let hitsterDeck = null;
 async function fetchHitsterArtworks() {
     try {
         if (!hitsterDeck) {
-            const res = await fetch('artline.json');
+            const res = await fetch('artline.json', { cache: 'no-cache' });
             hitsterDeck = await res.json();
         }
 
@@ -718,6 +733,9 @@ async function initGame() {
     
     maxRounds = parseInt(document.getElementById('rounds-select').value);
     targetCount = maxRounds + 1;
+
+    track('game-start');
+    track('rounds-' + maxRounds);
     document.getElementById('total-rounds').textContent = maxRounds;
     currentRound = 1;
     score = 0;
@@ -878,6 +896,8 @@ function placeCard(index) {
         dykSection.classList.add('hidden');
     }
     
+    track(isCorrect ? 'round-correct' : 'round-wrong');
+
     if (isCorrect) {
         feedbackMessage.textContent = 'Correctly placed!';
         feedbackMessage.className = 'success';
@@ -944,6 +964,8 @@ function updateScoreUI() {
 }
 
 function endGame() {
+    track('game-complete');
+
     screens.game.classList.remove('active');
     screens.end.classList.add('active');
     
@@ -999,12 +1021,14 @@ const galleryBtn = document.getElementById('gallery-btn');
 const backToMenuBtn = document.getElementById('back-to-menu-btn');
 
 galleryBtn.addEventListener('click', async () => {
+    track('gallery-open');
+
     screens.start.classList.remove('active');
     galleryScreen.classList.add('active');
     
     galleryGrid.innerHTML = '<p>Loading gallery...</p>';
     try {
-        const res = await fetch('artline.json');
+        const res = await fetch('artline.json', { cache: 'no-cache' });
         const data = await res.json();
         
         // Sort by year
@@ -1044,24 +1068,104 @@ const cancelReportBtn = document.getElementById('cancel-report-btn');
 const sendReportBtn = document.getElementById('send-report-btn');
 const reportText = document.getElementById('report-text');
 
+const REPORT_EMAIL = 'julian@langschwerts.de';
+const reportCardContext = document.getElementById('report-card-context');
+const reportCardSummary = document.getElementById('report-card-summary');
+const reportTopic = document.getElementById('report-topic');
+const reportFallback = document.getElementById('report-fallback');
+const reportFallbackText = document.getElementById('report-fallback-text');
+const reportCopyBtn = document.getElementById('report-copy-btn');
+
+// The card the player is currently looking at, if any. On the start screen,
+// the gallery or the end screen there is none, and the report is general.
+function reportContextCard() {
+    return currentCard || null;
+}
+
+function resetReportModal() {
+    reportFallback.classList.add('hidden');
+    reportFallbackText.value = '';
+    reportCopyBtn.textContent = 'Copy to clipboard';
+    reportText.value = '';
+}
+
 reportBtn.addEventListener('click', () => {
+    const card = reportContextCard();
+    if (card) {
+        reportCardSummary.textContent =
+            [card.title, card.artist, card.year].filter(Boolean).join(' \u00b7 ');
+        reportCardContext.classList.remove('hidden');
+    } else {
+        reportCardContext.classList.add('hidden');
+    }
     reportModal.classList.remove('hidden');
 });
 
 cancelReportBtn.addEventListener('click', () => {
     reportModal.classList.add('hidden');
-    reportText.value = '';
+    resetReportModal();
 });
 
+function buildReportBody(text, topic, card) {
+    const lines = [text, '', '---', 'Topic: ' + topic];
+    if (card) {
+        if (card.title) lines.push('Card: ' + card.title);
+        if (card.artist) lines.push('Artist: ' + card.artist);
+        if (card.year) lines.push('Year: ' + card.year);
+        if (card.movement) lines.push('Movement: ' + card.movement);
+        if (card.medium) lines.push('Medium: ' + card.medium);
+        if (card.location) lines.push('Location: ' + card.location);
+        if (card.source) lines.push('Source: ' + card.source);
+        if (card.id) lines.push('Card ID: ' + card.id);
+        lines.push('Round: ' + currentRound + ' of ' + maxRounds);
+    }
+    try { lines.push('Page: ' + window.location.href); } catch (e) {}
+    return lines.join('\r\n');
+}
+
 sendReportBtn.addEventListener('click', () => {
-    if (!reportText.value.trim()) {
+    const text = reportText.value.trim();
+    if (!text) {
         alert("Please enter some feedback before sending.");
         return;
     }
-    alert("Thank you for your feedback! It has been submitted.");
-    reportModal.classList.add('hidden');
-    reportText.value = '';
+
+    const topic = reportTopic ? reportTopic.value : 'Something else';
+    const card = reportContextCard();
+
+    let subject = 'CIRCArt feedback: ' + topic;
+    if (card && card.title) subject += ' \u2014 ' + card.title;
+
+    const body = buildReportBody(text, topic, card);
+
+    track('feedback-sent');
+
+    // Show the copyable version FIRST. A mailto: can fail silently when no mail
+    // client is configured, and the old code cleared the box and claimed the
+    // feedback had been sent, so anything typed was simply lost.
+    reportFallbackText.value = 'To: ' + REPORT_EMAIL + '\r\nSubject: ' + subject + '\r\n\r\n' + body;
+    reportFallback.classList.remove('hidden');
+
+    try {
+        window.location.href = 'mailto:' + REPORT_EMAIL +
+            '?subject=' + encodeURIComponent(subject) +
+            '&body=' + encodeURIComponent(body);
+    } catch (e) {
+        // Leave the fallback on screen; there is nothing else to do.
+    }
 });
+
+if (reportCopyBtn) {
+    reportCopyBtn.addEventListener('click', async () => {
+        try {
+            await navigator.clipboard.writeText(reportFallbackText.value);
+            reportCopyBtn.textContent = 'Copied';
+        } catch (e) {
+            reportFallbackText.select();          // older browsers / no permission
+            reportCopyBtn.textContent = 'Press Ctrl+C';
+        }
+    });
+}
 
 // Zoom Modal Logic
 const zoomModal = document.getElementById('zoom-modal');

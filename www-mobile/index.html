@@ -150,7 +150,30 @@
             <div class="modal-content">
                 <h2>Report / Feedback</h2>
                 <p>Spotted a wrong fact? Want to suggest a new feature? Let us know!</p>
-                <textarea id="report-text" placeholder="Type your feedback here..." rows="5"></textarea>
+                <div id="report-card-context" class="hidden" style="text-align:left;font-size:0.85rem;background:#f9f9f9;border:1px solid #eee;border-left:4px solid var(--accent-color);border-radius:6px;padding:0.6rem 0.75rem;margin-bottom:0.75rem;">
+                    <strong>About this card</strong>
+                    <div id="report-card-summary" style="margin-top:0.2rem;color:var(--text-secondary);"></div>
+                </div>
+
+                <label for="report-topic" style="display:block;text-align:left;font-size:0.85rem;margin-bottom:0.25rem;">What is this about?</label>
+                <select id="report-topic" style="width:100%;padding:0.5rem;margin-bottom:0.75rem;border:1px solid #ddd;border-radius:6px;font:inherit;">
+                    <option value="Wrong year">Wrong year</option>
+                    <option value="Wrong artist or title">Wrong artist or title</option>
+                    <option value="Image problem">Image problem</option>
+                    <option value="Wrong or unclear description">Wrong or unclear description</option>
+                    <option value="Feature suggestion">Feature suggestion</option>
+                    <option value="Something else" selected>Something else</option>
+                </select>
+
+                <textarea id="report-text" placeholder="Type your feedback here..." rows="5" maxlength="1000"></textarea>
+                <p id="report-hint" style="font-size:0.75rem;color:var(--text-secondary);text-align:left;margin:0.4rem 0 0;">This opens your email app with the details filled in. Nothing is sent until you press send there.</p>
+
+                <div id="report-fallback" class="hidden" style="text-align:left;margin-top:0.75rem;">
+                    <p style="font-size:0.8rem;margin:0 0 0.4rem;">If your email app did not open, copy this and send it to <strong>julian@langschwerts.de</strong>:</p>
+                    <textarea id="report-fallback-text" rows="6" readonly style="width:100%;font-size:0.75rem;"></textarea>
+                    <button id="report-copy-btn" class="secondary-btn" style="margin-top:0.4rem;padding:0.35rem 1rem;font-size:0.8rem;">Copy to clipboard</button>
+                </div>
+
                 <div class="modal-actions">
                     <button id="cancel-report-btn" class="secondary-btn">Cancel</button>
                     <button id="send-report-btn" class="primary-btn">Send</button>
