@@ -132,14 +132,17 @@
                      CSS shows whichever suits the current layout. -->
                 <div id="timeline-section">
                     <h2>Timeline</h2>
+                    <!-- Newest at the top: the phone timeline is
+                         column-reverse, so these labels match the visual
+                         order rather than the DOM order. -->
                     <div class="timeline-direction">
-                        <span class="direction-label">&#9650; Older</span>
+                        <span class="direction-label">&#9650; Newer</span>
                     </div>
                     <div id="timeline" class="timeline">
                         <!-- Filled by JS: gaps and cards -->
                     </div>
                     <div class="timeline-direction">
-                        <span class="direction-label">&#9660; Newer</span>
+                        <span class="direction-label">&#9660; Older</span>
                     </div>
                 </div>
             </main>

@@ -492,6 +492,13 @@ main, .game-main {
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
+/* First-run coaching: app.js puts .learning on the timeline until the player
+   has placed their first card ever, then takes it off permanently. Declared
+   here, ahead of the phone breakpoint, so the phone version wins there. */
+.timeline.learning .timeline-gap::before {
+    animation: gapPulseDesktop 1.8s ease-in-out infinite;
+}
+
 .timeline-card {
     flex-shrink: 1;
     flex-basis: 350px;
@@ -1085,8 +1092,12 @@ main, .game-main {
         border-radius: 20px;
     }
 
+    /* column-reverse puts the NEWEST work at the top, which is how people
+       expect a feed to read. app.js still builds the list oldest-first, so
+       every gap carries an aria-label describing where it sits — the visual
+       order and the DOM order deliberately differ here. */
     .timeline {
-        flex-direction: column;
+        flex-direction: column-reverse;
         flex-wrap: nowrap;
         align-items: center;
         overflow-x: visible;
@@ -1107,6 +1118,11 @@ main, .game-main {
         z-index: 0;
     }
 
+    /* The gap is drawn as an empty slot rather than a bare + on a line.
+       Testers kept missing it: a 52px row is a fine target, but an invisible
+       one, so the eye only registered a small circle and never read it as
+       somewhere a card could go. A dashed frame between two solid cards says
+       "something belongs here" without anyone having to read the hint. */
     .timeline-gap {
         width: 100%;
         min-width: 0;
@@ -1114,11 +1130,58 @@ main, .game-main {
         height: auto;
         min-height: 52px;          /* comfortable thumb target */
         z-index: 1;
-        border-radius: 8px;
-        transition: background-color 0.15s;
+        gap: 0.5rem;
+        margin: 6px 0;
+        border: 2px dashed rgba(157, 140, 112, 0.4);
+        border-radius: 10px;
+        /* Opaque, not translucent: the timeline's centre line would otherwise
+           show through the slot and read as a stray mark next to the +. It
+           still shows in the margins, where it works as a connector. */
+        background: #f8f6f1;
+        transition: background-color 0.15s, border-color 0.15s;
+    }
+
+    .timeline-gap:active {
+        background: #efe9de;
+        border-color: var(--accent-color);
     }
 
     .timeline-gap::after { display: none; }
+
+    /* Until the first card has ever been placed, name the action outright.
+       flex:none + nowrap keep it on one line beside the +, instead of being
+       squeezed into a column by the flex container. */
+    .timeline.learning .timeline-gap::after {
+        display: block;
+        content: 'Tap to place';
+        /* The desktop rule makes ::after a 4px grey bar. Re-using the same
+           pseudo-element for the label means explicitly undoing that, or the
+           bar's width and background survive and sit beside the +. */
+        width: auto;
+        height: auto;
+        background: none;
+        border-radius: 0;
+        flex: none;
+        white-space: nowrap;
+        font-family: var(--font-body);
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--accent-color);
+        letter-spacing: 0.01em;
+    }
+
+    /* The floating Report button sits bottom-right and would otherwise land
+       on top of the coaching label. Tuck it away while we are coaching. */
+    .timeline.learning ~ * .report-btn,
+    body:has(.timeline.learning) .report-btn {
+        opacity: 0.35;
+        transform: scale(0.85);
+        transform-origin: bottom right;
+    }
+
+    .timeline.learning .timeline-gap::before {
+        animation: gapPulse 1.8s ease-in-out infinite;
+    }
 
     .timeline-gap::before {
         position: static;
@@ -1213,6 +1276,20 @@ main, .game-main {
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
+}
+
+/* First-run pulse on the placement slots. app.js adds .learning until the
+   player has placed a card for the first time, then removes it for good.
+   Two keyframe sets because the desktop + is centred with translateY(-50%),
+   which a bare scale() would throw away. */
+@keyframes gapPulse {
+    0%, 100% { transform: scale(1);    box-shadow: 0 2px 8px rgba(0,0,0,0.12); }
+    50%      { transform: scale(1.14); box-shadow: 0 0 0 9px rgba(157,140,112,0.16); }
+}
+
+@keyframes gapPulseDesktop {
+    0%, 100% { transform: translateY(-50%) scale(1);    box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    50%      { transform: translateY(-50%) scale(1.18); box-shadow: 0 0 0 10px rgba(157,140,112,0.16); }
 }
 
 /* Keep content clear of the notch and the home indicator. */

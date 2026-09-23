@@ -826,14 +826,59 @@ async function prepareNextRound() {
     renderTimeline();
 }
 
+// --- First-run coaching -----------------------------------------------------
+// Testers repeatedly missed that the gaps between cards are where you place
+// the artwork. Until someone has placed their first card ever, the slots are
+// labelled and gently pulsed; afterwards they go quiet.
+
+const PLACED_KEY = 'hasPlacedCard';
+
+function hasPlacedBefore() {
+    try {
+        return localStorage.getItem(PLACED_KEY) === '1';
+    } catch (e) {
+        return false;               // storage blocked: coach them, it is harmless
+    }
+}
+
+function markPlaced() {
+    try {
+        localStorage.setItem(PLACED_KEY, '1');
+    } catch (e) { /* nothing to do */ }
+    if (timelineEl) timelineEl.classList.remove('learning');
+}
+
 function renderTimeline() {
     timelineEl.innerHTML = '';
-    
+    timelineEl.classList.toggle('learning', !hasPlacedBefore());
+
     for (let i = 0; i <= timeline.length; i++) {
         const gap = document.createElement('div');
         gap.className = 'timeline-gap';
         gap.dataset.index = i;
+
+        // Spell out what this slot means. Needed for screen readers, and
+        // doubly so on phones where the list is shown newest-first while the
+        // DOM stays in chronological order.
+        const before = timeline[i - 1];
+        const after = timeline[i];
+        let label;
+        if (!before && !after)      label = 'Place the artwork on the timeline';
+        else if (!before)           label = `Place before ${after.objectEndDate}`;
+        else if (!after)            label = `Place after ${before.objectEndDate}`;
+        else                        label = `Place between ${before.objectEndDate} and ${after.objectEndDate}`;
+
+        gap.setAttribute('role', 'button');
+        gap.setAttribute('tabindex', '0');
+        gap.setAttribute('aria-label', label);
+
         gap.addEventListener('click', () => placeCard(i));
+        gap.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                placeCard(i);
+            }
+        });
         timelineEl.appendChild(gap);
         
         if (i < timeline.length) {
@@ -860,6 +905,8 @@ function renderTimeline() {
 
 function placeCard(index) {
     if (!feedbackArea.classList.contains('hidden')) return;
+
+    markPlaced();   // they have understood the slots; stop the hand-holding
     
     let isCorrect = true;
     const year = currentCard.objectEndDate;
