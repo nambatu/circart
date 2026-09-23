@@ -1,10 +1,25 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- viewport-fit=cover lets the layout reach under the notch; zoom is
+         deliberately NOT disabled — the artwork is the point of the game,
+         and blocking pinch-zoom is an accessibility failure. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="referrer" content="no-referrer">
+    <meta name="description" content="Place masterpieces of art history in the correct chronological order on the timeline.">
     <title>CIRCArt - CMA Edition</title>
+
+    <!-- Installable web app -->
+    <link rel="manifest" href="manifest.webmanifest">
+    <meta name="theme-color" content="#fcfbf9">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="CIRCArt">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    <link rel="icon" href="icons/icon-192.png">
+
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,11 +28,11 @@
 </head>
 <body>
     <div id="app">
-        <!-- START SCREEN -->
+        <!-- ==================== START SCREEN ==================== -->
         <div id="start-screen" class="screen active">
             <h1><span style="color: #000;">CIRC</span><span style="color: #722F37;">Art</span></h1>
             <p>Place masterpieces of art history in the correct chronological order on the timeline.</p>
-            
+
             <div class="settings">
                 <div class="settings-container">
                     <div class="settings-card primary-card">
@@ -34,37 +49,38 @@
                     </div>
                 </div>
             </div>
-            
-            <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1rem;">
+
+            <div class="start-actions">
                 <button id="start-btn" class="primary-btn">Start Game</button>
-                <button id="gallery-btn" class="primary-btn" style="background-color: #555;">View Gallery</button>
+                <button id="gallery-btn" class="primary-btn gallery-btn-style">View Gallery</button>
             </div>
         </div>
 
-        <!-- GALLERY SCREEN -->
+        <!-- ==================== GALLERY SCREEN ==================== -->
         <div id="gallery-screen" class="screen">
             <header>
                 <h2>Gallery</h2>
-                <button id="back-to-menu-btn" class="primary-btn" style="padding: 0.5rem 1.5rem; font-size: 1rem;">Back to Menu</button>
+                <button id="back-to-menu-btn" class="primary-btn small-btn">Back to Menu</button>
             </header>
-            <main style="overflow-y: auto; width: 100%;">
+            <main class="gallery-main">
                 <div id="gallery-grid" class="gallery-grid">
                     <!-- Gallery items go here -->
                 </div>
             </main>
         </div>
 
-        <!-- GAME SCREEN -->
+        <!-- ==================== GAME SCREEN ==================== -->
         <div id="game-screen" class="screen">
-            <header>
+            <header class="game-header">
                 <div class="stats">
                     <span>Round <span id="current-round">1</span> / <span id="total-rounds">10</span></span>
                     <span>Score: <span id="score">0</span></span>
                 </div>
             </header>
 
-            <main>
-                <!-- Aktuelle Karte zum Einordnen -->
+            <main class="game-main">
+                <!-- Artwork to place, plus the interaction panel.
+                     Side by side on desktop, stacked on a phone. -->
                 <div id="active-card-section">
                     <div id="active-card" class="card hidden">
                         <div class="card-image-container">
@@ -76,22 +92,26 @@
                             <p class="year" id="active-year">Year</p>
                         </div>
                     </div>
-                    
+
                     <div id="interaction-panel">
                         <div class="bonus-section" id="bonus-section">
                             <h3>Extra Points (Optional)</h3>
                             <p class="hint">Guess the artist, title, or exact year for bonus points! (Typos allowed)</p>
-                            <input type="text" id="guess-artist" placeholder="Artist">
-                            <input type="text" id="guess-title" placeholder="Title">
-                            <input type="number" id="guess-year" placeholder="Year (exact)">
-                            <p class="instruction">Click on a gap in the timeline below to place the artwork.</p>
+                            <input type="text" id="guess-artist" placeholder="Artist" autocomplete="off">
+                            <input type="text" id="guess-title" placeholder="Title" autocomplete="off">
+                            <input type="number" id="guess-year" placeholder="Year (exact)" inputmode="numeric">
+                            <!-- Wording follows the input device, chosen in CSS -->
+                            <p class="instruction">
+                                <span class="instruction-mouse">Click on a gap in the timeline below to place the artwork.</span>
+                                <span class="instruction-touch">Tap a + button in the timeline below to place the artwork.</span>
+                            </p>
                         </div>
 
-                        <!-- Feedback Area -->
+                        <!-- Feedback Area (shown after placement) -->
                         <div id="feedback-area" class="hidden">
                             <h2 id="feedback-message">Correct!</h2>
                             <ul id="bonus-feedback"></ul>
-                            <div id="active-extra-info" class="metadata-box" style="font-size: 0.8rem; color: var(--text-secondary); background: #f9f9f9; padding: 0.5rem; border-radius: 6px; margin-bottom: 0.5rem; text-align: center; border: 1px solid #eee;">
+                            <div id="active-extra-info" class="metadata-box">
                                 <span id="active-movement"></span> &bull; <span id="active-medium"></span> &bull; <span id="active-location"></span>
                             </div>
                             <div id="trivia-section" class="hidden">
@@ -107,17 +127,25 @@
                     </div>
                 </div>
 
-                <!-- Zeitstrahl -->
+                <!-- Timeline: horizontal on desktop, vertical on a phone.
+                     Both the heading and the direction labels are present;
+                     CSS shows whichever suits the current layout. -->
                 <div id="timeline-section">
                     <h2>Timeline</h2>
+                    <div class="timeline-direction">
+                        <span class="direction-label">&#9650; Older</span>
+                    </div>
                     <div id="timeline" class="timeline">
-                        <!-- Wird per JS befüllt: Gaps und Karten -->
+                        <!-- Filled by JS: gaps and cards -->
+                    </div>
+                    <div class="timeline-direction">
+                        <span class="direction-label">&#9660; Newer</span>
                     </div>
                 </div>
             </main>
         </div>
 
-        <!-- END SCREEN -->
+        <!-- ==================== END SCREEN ==================== -->
         <div id="end-screen" class="screen">
             <h1>Game Over!</h1>
             <p>Your Highscore:</p>
@@ -128,16 +156,16 @@
             <button id="restart-btn" class="primary-btn">Play Again</button>
         </div>
 
-        <!-- LOADING OVERLAY -->
+        <!-- ==================== LOADING OVERLAY ==================== -->
         <div id="loading-overlay" class="hidden">
-            <lottie-player id="lottie-loader" src="Abstract%20Painting%20Loader.json" background="transparent" speed="1" style="width: 250px; height: 250px;" loop autoplay></lottie-player>
+            <lottie-player id="lottie-loader" src="Abstract%20Painting%20Loader.json" background="transparent" speed="1" loop autoplay></lottie-player>
             <p id="loading-text">Loading artworks from the museum...</p>
         </div>
 
-        <!-- FLOATING REPORT BUTTON -->
+        <!-- ==================== FLOATING REPORT BUTTON ==================== -->
         <button id="open-report-btn" class="report-btn">Report / Feedback</button>
 
-        <!-- REPORT MODAL -->
+        <!-- ==================== REPORT MODAL ==================== -->
         <div id="report-modal" class="modal hidden">
             <div class="modal-content">
                 <h2>Report / Feedback</h2>
@@ -173,17 +201,28 @@
             </div>
         </div>
 
-        <!-- ZOOM MODAL -->
+        <!-- ==================== ZOOM MODAL ==================== -->
         <div id="zoom-modal" class="zoom-modal hidden">
             <span id="close-zoom-btn" class="close-zoom">&times;</span>
             <img id="zoomed-image" src="" alt="Zoomed Artwork">
         </div>
+
+        <!-- ==================== INSTALL HINT ====================
+             Android fires beforeinstallprompt and gets a real button.
+             iOS has no install prompt at all, so it gets instructions. -->
+        <div id="install-hint" class="hidden">
+            <p id="install-hint-text"></p>
+            <button id="install-accept" class="hidden">Install</button>
+            <button id="install-dismiss" aria-label="Dismiss">&times;</button>
+        </div>
     </div>
+
     <!-- Anonymous, cookieless analytics. No cookies, no personal data.
          Dashboard: https://circart.goatcounter.com -->
     <script data-goatcounter="https://circart.goatcounter.com/count"
             async src="//gc.zgo.at/count.js"></script>
 
     <script src="app.js"></script>
+    <script src="pwa.js"></script>
 </body>
 </html>

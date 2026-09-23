@@ -17,8 +17,10 @@ update the live game.
 """
 
 import json
+import re
 import shutil
 import sys
+from datetime import datetime
 from pathlib import Path
 
 try:
@@ -43,10 +45,16 @@ DST = ROOT / "docs"
 STATIC_FILES = [
     "index.html",
     "app.js",
+    "pwa.js",
     "style.css",
     "artline.json",
     "Abstract Painting Loader.json",
+    "manifest.webmanifest",
+    "sw.js",
 ]
+
+# Copied wholesale (app icons).
+STATIC_DIRS = ["icons"]
 
 
 def human(n):
@@ -75,9 +83,30 @@ def main():
         else:
             print(f"  ! missing: {name}")
 
+    for d in STATIC_DIRS:
+        src_dir = SRC / d
+        if src_dir.is_dir():
+            shutil.copytree(src_dir, DST / d)
+            n = len(list((DST / d).glob("*")))
+            print(f"  + {d}/ ({n} files)")
+        else:
+            print(f"  ! missing directory: {d}")
+
     if CUSTOM_DOMAIN:
         (DST / "CNAME").write_text(CUSTOM_DOMAIN + "\n", encoding="utf-8")
         print(f"  + CNAME ({CUSTOM_DOMAIN})")
+
+    # A service worker only replaces its caches when its own bytes change.
+    # Stamping the build time in guarantees that, so a returning player is
+    # never stuck on a stale copy of the game.
+    sw = DST / "sw.js"
+    if sw.exists():
+        stamp = datetime.now().strftime("%Y%m%d-%H%M%S")
+        text = sw.read_text(encoding="utf-8")
+        text = re.sub(r"const CACHE_VERSION = '[^']*';",
+                      f"const CACHE_VERSION = '{stamp}';", text, count=1)
+        sw.write_text(text, encoding="utf-8")
+        print(f"  + sw.js cache version -> {stamp}")
 
     # 2. resize the images
     src_images = sorted((SRC / "images").glob("*"))
