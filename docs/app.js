@@ -872,6 +872,15 @@ function renderTimeline() {
         gap.setAttribute('tabindex', '0');
         gap.setAttribute('aria-label', label);
 
+        // A real element for the button, rather than a ::before glyph. The
+        // plus is drawn as two bars in CSS, so it cannot drift with the
+        // font's metrics, and the circle is a plain flex item that centres
+        // identically in the horizontal and vertical layouts.
+        const btn = document.createElement('span');
+        btn.className = 'gap-btn';
+        btn.setAttribute('aria-hidden', 'true');
+        gap.appendChild(btn);
+
         gap.addEventListener('click', () => placeCard(i));
         gap.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ') {

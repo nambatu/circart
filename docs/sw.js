@@ -9,7 +9,7 @@
    for you, so you normally never touch this file.
    ============================================================ */
 
-const CACHE_VERSION = '20260923-225804';
+const CACHE_VERSION = '20260924-160413';
 
 const SHELL_CACHE  = `circart-shell-${CACHE_VERSION}`;
 const IMAGE_CACHE  = `circart-images-${CACHE_VERSION}`;
